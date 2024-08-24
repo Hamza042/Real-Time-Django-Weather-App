@@ -10,12 +10,12 @@ def home(request):
         city = request.POST['city']
     else:
         city = 'Islamabad'
-    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=43604a9073ba78d6d4d5b72eafed60f1'
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=[API KEY]'
     
     PARAMS = {'units':'metric'}
 
-    API_KEY = 'AIzaSyAJ_JQT4c4yxdzooP1tD8A6RiWsDAqTGYM'
-    SEARCH_ENGINE_ID = '92dc4e33cb4634efe'
+    API_KEY = 'Your API KEY'
+    SEARCH_ENGINE_ID = 'YOUR SEARCH ENGINE ID'
     
     query = city + "1920x1080"
     page = 1
