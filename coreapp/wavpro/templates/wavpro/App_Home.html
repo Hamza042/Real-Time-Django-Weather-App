@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAVPRO</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather02-512.png">
+    <link rel="stylesheet" href="{% static 'App_Home_Style.css' %}">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"/>
+</head>
+
+<body {% if exception_occurred %}
+    style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/eb/Faisal_Mosque%2C_Islamabad_III.jpg');" 
+  {% else %}
+  style="background-image: url('{{ image_url }}');"
+  {% endif %}>
+  <div class="container">
+    <h1 class="heading">WAVPRO</h1>
+    
+    <form method="POST" class="search-form">
+      {% csrf_token %}
+      <input type="text" name="city" placeholder="Enter City">
+      <button type="submit" class="btn">Search</button>
+    </form>
+
+    <div class="weather">
+      <div class="left">
+        <h2 class="temp">{{ temp }}&#176; C</h2>
+        <h2 class="city">{{ city }}</h2>
+      </div>
+      <div class="right">
+        <div class="icon">
+          <img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Weather icon">
+        </div>
+        <div class="condition">
+          <p>{{ description }}</p>
+          <p>{{ day }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  {% if exception_occurred %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            alert("City information is not available to Weather API");
+        });
+    </script>
+  {% endif %}
+</body>
+</html>
